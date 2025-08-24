@@ -86,8 +86,17 @@ while run:
 
         # Deteksi tabrakan dengan raket
         if sprite.collide_rect(racket1, ball) or sprite.collide_rect(racket2, ball):
-            speed_x *= -1  # Balik arah
-            speed_y *= 1   # Reset setelah pantulan dari pinggir bawah/atas
+            speed_x *= -1  # dipantulkan (ke arah sebaliknya)
+            speed_y *= 1   # reset setelah pantulan dari pinggir bawah/atas
+
+        # bola melewati pemain side left/side right
+        if ball.rect.x < 0:  # side left
+            finish = True
+            window.blit(lose_1, (200, 200))
+
+        if ball.rect.x > win_width:  # side right
+            finish = True
+            window.blit(lose_2, (200, 200))
 
 
     racket1.reset()
